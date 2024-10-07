@@ -61,6 +61,8 @@ int main ()
 
     enemy->talk("You are dead"); // call a method on a object pointer
     
+    delete enemy; // delete pointer when finished
+
     Account frank_account;
     frank_account.name = "Franks account";
     frank_account.balance = 5000.0;
