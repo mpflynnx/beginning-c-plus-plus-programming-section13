@@ -1,84 +1,100 @@
 #include <iostream>
 #include <string>
 
-// Accessing Class Members
+/*
+Implementing member methods in one file inline and outside class
+*/
 
-class Player
+class Account
 {
 
-    // private attributes
-    std::string m_name {"default name"};
-    int m_health;
-    int m_xp;
-    /* 
-    private members by default if placed here, 
-    can use private:
-    private members prefixed with m_
-    private member attributes provide protection
-    only updated with public methods  
-    */
+private:
+    // attributes
+    std::string m_name;
+    double m_balance;
 
-    
 public:
-   
-    // public methods defined here, but usually just prototypes here
-    // if using header files
-
-    void talk(std::string text_to_say) const
-    {
-        std::cout << m_name << " says " << text_to_say << '\n';
-    }
     
-    bool is_dead();
-  
+    // methods declared inline
+    void set_balance(double bal)
+    {
+        m_balance = bal;
+    }
+
+    double get_balance()
+    {
+        return m_balance;
+    }
+
+    // methods will be declared outside class declaration
+    // prototypes only here
+    void set_name(std::string n);
+    std::string get_name();
+
+    bool deposit(double amount);
+    bool withdraw(double amount);
+     
 };
 
-// class Account
-// {
+/* 
+Methods declared outside of class below
+Must include the class name and the scope resolution operator ::
+i.e ClassName::method_name
+Public methods have access to private attributes
+*/
+void Account::set_name(std::string n)
+{
+    m_name = n;
+}
 
-// // private members by default if placed here
+std::string Account::get_name()
+{
+    return m_name;
+}
 
-// public:
-//     // attributes
-//     std::string name;
-//     double balance;
-    
-//     // methods
-//     void deposit(double bal)
-//     {
-//         balance += bal;
-//         std::cout << "deposit method\n";
-//     }
+bool Account::deposit(double amount)
+{
+    // if verify amount
+    m_balance += amount;
+    return true;
+}
 
-
-//     void withdraw(double bal)
-//     {
-//         balance -= bal;
-//         std::cout << "withdraw method\n";
-
-//     }
-  
-// };
+bool Account::withdraw(double amount)
+{
+    if (m_balance-amount >= 0){
+        m_balance -= amount;
+        return true;
+    } else {
+        return false;
+    }
+}
 
 int main ()
 {
 
-    Player frank;
-    /* Testing for compiler errors
+    Account frank_account;
+    // Must use public method to set m_name
+    frank_account.set_name("Frank's Savings Account");
+    // Must use public method to set m_balance
+    frank_account.set_balance(1000.0);
 
+    if (frank_account.deposit(200.0)) {
+        std::cout << "Deposit Good.\n";
+    } else {
+        std::cout << "Deposit bad, must be greater than 200.0\n";
+    }
 
-    frank.m_name = "Frank"; 
+    if (frank_account.withdraw(500.0)) {
+        std::cout << "Withdrawal amount valid.\n";
+    } else {
+        std::cout << "Sorry you don't have enough money.\n";
+    }
 
-    error: ‘std::string Player::m_name’ is private within this context 
-    61 |     frank.m_name = "Frank";
-
-    Cannot access private attribute from outside class.
-    */
-
-   /*
-    Public methods can be accessed.
-   */
-    frank.talk("Public methods work\n");
+    if (frank_account.withdraw(1500.0)) {
+        std::cout << "Withdrawal amount valid.\n";
+    } else {
+        std::cout << "Sorry you don't have enough money.\n";
+    }
 
     return 0;
     
