@@ -6,79 +6,79 @@
 class Player
 {
 
-    // private members by default if placed here
+    // private attributes
+    std::string m_name {"default name"};
+    int m_health;
+    int m_xp;
+    /* 
+    private members by default if placed here, 
+    can use private:
+    private members prefixed with m_
+    private member attributes provide protection
+    only updated with public methods  
+    */
+
     
 public:
-    // attributes
-    std::string name;
-    int health;
-    int xp;
-    
-    
-    // methods defined here, but usually just prototypes here
+   
+    // public methods defined here, but usually just prototypes here
     // if using header files
 
-    void talk(std::string text_to_say)
+    void talk(std::string text_to_say) const
     {
-        std::cout << name << " says " << text_to_say << '\n';
+        std::cout << m_name << " says " << text_to_say << '\n';
     }
     
     bool is_dead();
   
 };
 
-class Account
-{
+// class Account
+// {
 
-// private members by default if placed here
+// // private members by default if placed here
 
-public:
-    // attributes
-    std::string name;
-    double balance;
+// public:
+//     // attributes
+//     std::string name;
+//     double balance;
     
-    // methods
-    void deposit(double bal)
-    {
-        balance += bal;
-        std::cout << "deposit method\n";
-    }
+//     // methods
+//     void deposit(double bal)
+//     {
+//         balance += bal;
+//         std::cout << "deposit method\n";
+//     }
 
 
-    void withdraw(double bal)
-    {
-        balance -= bal;
-        std::cout << "withdraw method\n";
+//     void withdraw(double bal)
+//     {
+//         balance -= bal;
+//         std::cout << "withdraw method\n";
 
-    }
+//     }
   
-};
+// };
 
 int main ()
 {
-    
+
     Player frank;
-    frank.name = "Frank";
-    frank.health = 100;
-    frank.xp = 12;
-    frank.talk("Hi there");
+    /* Testing for compiler errors
 
-    Player *enemy = new Player; // creates a pointer to a new object on heap
-    (*enemy).name = "enemy"; // dereference pointer to update attributes
-    (*enemy).health = 100;
-    // (*enemy).xp = 15;
-    enemy->xp = 15; // alternative to above using arrow operator
 
-    enemy->talk("You are dead"); // call a method on a object pointer
-    
-    delete enemy; // delete pointer when finished if used new keyword
+    frank.m_name = "Frank"; 
 
-    Account frank_account;
-    frank_account.name = "Franks account";
-    frank_account.balance = 5000.0;
+    error: ‘std::string Player::m_name’ is private within this context 
+    61 |     frank.m_name = "Frank";
 
-    frank_account.deposit(1000.0);
-    frank_account.withdraw(500.0);
+    Cannot access private attribute from outside class.
+    */
+
+   /*
+    Public methods can be accessed.
+   */
+    frank.talk("Public methods work\n");
 
     return 0;
     
