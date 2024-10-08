@@ -1,35 +1,40 @@
 #include <iostream>
 #include <string>
-#include "include/Account.hpp"
+#include "include/Player.hpp"
 
 
 int main ()
 {
 
-    // Class Account from Account.hpp
-    Account frank_account;
-    // Must use public method to set m_name
-    frank_account.set_name("Frank's Savings Account");
-    // Must use public method to set m_balance
-    frank_account.set_balance(1000.0);
+    // to force destructor demonstration, place code inside {}
 
-    if (frank_account.deposit(200.0)) {
-        std::cout << "Deposit Good.\n";
-    } else {
-        std::cout << "Deposit bad, must be greater than 200.0\n";
-    }
+    //Created on the stack 
+    {
+        Player player1; // No arg constructor
+        player1.set_name("Slayer");
+    } // destructor called here, when out of scope
 
-    if (frank_account.withdraw(500.0)) {
-        std::cout << "Withdrawal amount valid.\n";
-    } else {
-        std::cout << "Sorry you don't have enough money.\n";
-    }
+    {
+        Player player2; // No arg constructor
+        player2.set_name("Darren");
+        
+        Player player3("Hero"); // String arg constructor
+        player3.set_name("Hero");
+        
+        Player player4("Vivian", 99, 11); // Three arg constructor
+        player4.set_name("Vivian");
+    } // destructor called here in reverse order to constructor
 
-    if (frank_account.withdraw(1500.0)) {
-        std::cout << "Withdrawal amount valid.\n";
-    } else {
-        std::cout << "Sorry you don't have enough money.\n";
-    }
+
+    // Pointer to objects,created on the heap
+    Player *enemy = new Player;
+    enemy->set_name("Enemy");
+
+    Player *level_boss = new Player("Level Boss", 1000, 300);
+    level_boss->set_name("Level Boss");
+
+    delete enemy; // destructor called here, deleted from heap
+    delete level_boss; // destructor called here, deleted from heap
 
     return 0;
     
