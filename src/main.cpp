@@ -1,40 +1,20 @@
 #include <iostream>
 #include <string>
-#include "include/Player.hpp"
+#include "include/Account.hpp"
 
 
 int main ()
 {
 
-    // to force destructor demonstration, place code inside {}
+    Account savings{}; // value initialization preferred, but must have matching default constructor.
 
-    //Created on the stack 
-    {
-        Player player1; // No arg constructor
-        player1.set_name("Slayer");
-    } // destructor called here, when out of scope
-
-    {
-        Player player2; // No arg constructor
-        player2.set_name("Darren");
-        
-        Player player3("Hero"); // String arg constructor
-        player3.set_name("Hero");
-        
-        Player player4("Vivian", 99, 11); // Three arg constructor
-        player4.set_name("Vivian");
-    } // destructor called here in reverse order to constructor
-
-
-    // Pointer to objects,created on the heap
-    Player *enemy = new Player;
-    enemy->set_name("Enemy");
-
-    Player *level_boss = new Player("Level Boss", 1000, 300);
-    level_boss->set_name("Level Boss");
-
-    delete enemy; // destructor called here, deleted from heap
-    delete level_boss; // destructor called here, deleted from heap
+    Account current; // default initialization, calls Account() default constructor
+    std::cout << current.get_name() << std::endl;
+    std::cout << current.get_balance() << std::endl;
+    current.set_name("Barclays");
+    current.set_balance(999.0);
+    std::cout << current.get_name() << std::endl;
+    std::cout << current.get_balance() << std::endl;
 
     return 0;
     
