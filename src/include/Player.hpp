@@ -19,6 +19,11 @@ public:
         m_name = name;
     }
 
+    std::string get_name()
+    {
+        return m_name;
+    }
+
     // Three Overloaded Constructors
     Player()
     {
