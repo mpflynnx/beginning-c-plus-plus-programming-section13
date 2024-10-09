@@ -3,12 +3,10 @@
 #include <string>
 #include <iostream>
 
-// Declaration for PLAYER Class
 class Player
 {
 
 private:
-    // attributes, order declared here is how initialisation will take place
     std::string m_name;
     int m_health;
     int m_xp;
@@ -24,16 +22,27 @@ public:
         return m_name;
     }
 
-    /*
-    Reduce the number of constructors with one constructor 
-    with default parameters
-    
-    Prototype here, see Player.hpp for design
-    Use only when it makes sense too.
-    Sometimes you want the user to explicitly define them all.
-    */
+    int get_health()
+    {
+        return m_health;
+    }
+
+    int get_xp()
+    {
+        return m_xp;
+    }
+
     Player(std::string name = "None", int health = 0, int xp = 0);
     
+    // Copy constructors
+    // compiler implicitly generates a copy constructor if there is not one.
+
+    Player(const Player &source);
+    
+
+    // Explicitly request from the compiler a default copy constructor
+    // Player(const Player& player) = default;
+
     // destructor
     ~Player()
     {
