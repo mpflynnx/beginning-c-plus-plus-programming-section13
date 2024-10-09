@@ -24,49 +24,27 @@ public:
         return m_name;
     }
 
-    // Three Overloaded Constructors must all have different signatures
-    
-    // Only provide a default constructor when it make sense to
-    // Player() // default constructor
-    // {
-    //     m_name = "None"; // m_name already created as "" before here;
-    //     m_health = 0; // m_health already created with junk before here;
-    //     m_xp = 0; // m_xp already created with junk before here;
-    //     std::cout << "No args given constructor called.\n";
-    // }
-
-    // PREFERRED
+    /*
+    Delegating constructors
+    Reduces code duplication, by using a delegation to a 
+    multiple args constructor
+    */
+   
+    // Default constructor Player() delegates work to the three args constructor
     Player()
-        :m_name{"None"}, m_health{0}, m_xp{0} // can be in any order
+        :Player{"None", 0, 0} // Three arg constructor called here
     {
         std::cout << "No args given constructor called.\n";
     }
 
-    // Player(std::string name) // One arg constructor with initialisation
-    // {
-    //     m_name = name;
-    //     m_health = 0;
-    //     m_xp = 0;
-    //     std::cout << "String arg given constructor called.\n";
-    // }
-
-    // PREFERRED method of initialization to above
-    Player(std::string name) // One arg constructor using initialisation list
-        : m_name{name}, m_health{0}, m_xp{0}
+    // One arg constructor delegates work to the three args constructor
+    Player(std::string name)
+        :Player{name, 0, 0} // Three arg constructor called here
     {
         std::cout << "One arg given constructor called.\n";
     }
 
-    // Three arg constructor with initialisation
-    // Player(std::string name, int health, int xp)
-    // {
-    //     m_name = name;
-    //     m_health = health;
-    //     m_xp = xp;
-    //     std::cout << "Three args given constructor called.\n";
-    // }
-
-    // PREFERRED to above Three arg constructor with initialisation list
+    // Three arg constructor, this does all the work
     Player(std::string name, int health, int xp)
         : m_name{name}, m_health{health}, m_xp {xp}
     {
