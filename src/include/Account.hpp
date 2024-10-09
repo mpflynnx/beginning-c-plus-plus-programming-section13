@@ -26,12 +26,12 @@ public:
    Account() = default; // generates an explicitly defaulted default constructor
 
     // user-declared constructor
-   // default constructor with initialisation
-   Account()
-   {
-    m_name = "empty name field";
-    m_balance = 0.0;
-   }
+   // default constructor with initialisation same as above
+//    Account()
+//    {
+//     m_name = "empty name field";
+//     m_balance = 0.0;
+//    }
 
 
     void set_balance(double bal)

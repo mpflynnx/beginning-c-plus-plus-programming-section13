@@ -1,21 +1,26 @@
 #include <iostream>
 #include <string>
-#include "include/Account.hpp"
+#include "include/Player.hpp"
 
 
 int main ()
 {
 
-    Account savings{}; // value initialization preferred, but must have matching default constructor.
+    // Created on stack
+    // Player empty; // None, 0, 0
 
-    Account current; // default initialization, calls Account() default constructor
-    std::cout << current.get_name() << std::endl;
-    std::cout << current.get_balance() << std::endl;
-    current.set_name("Barclays");
-    current.set_balance(999.0);
-    std::cout << current.get_name() << std::endl;
-    std::cout << current.get_balance() << std::endl;
+    Player empty{}; // None, 0, 0
+
+    Player hero {"Hero"}; // Hero, 0, 0
+
+    Player villain {"Villain"}; // Villain, 0 , 0
+
+    Player Frank {"Frank", 100, 4}; // Frank, 100, 4
+
+    // Created dynamically in the Heap
+    Player *enemy = new Player("Enemy", 1000, 0); // Enemy, 1000, 0
+    delete enemy;
 
     return 0;
     
-}
+} // Destructors called in reverse order to constructors

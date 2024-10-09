@@ -24,19 +24,34 @@ public:
         return m_name;
     }
 
-    // Three Overloaded Constructors
-    Player()
-    {
-        std::cout << "No args given constructor called.\n";
-    }
+    // Three Overloaded Constructors must all have different signatures
+    
+    // Only provide a default constructor when it make sense to
+    Player() = default; // Use with Player objectName {};
+    
+    
+    // Player() // default constructor with initialisation
+    // {
+    //     m_name = "None";
+    //     m_health = 0; // best practice to initialise all class members
+    //     m_xp = 0;
+    //     std::cout << "No args given constructor called.\n";
+    // }
 
-    Player(std::string m_name)
+    Player(std::string name) // One arg constructor with initialisation
     {
+        m_name = name;
+        m_health = 0;
+        m_xp = 0;
         std::cout << "String arg given constructor called.\n";
     }
 
-    Player(std::string m_name, int m_health, int m_xp)
+    // Three arg constructor with initialisation
+    Player(std::string name, int health, int xp)
     {
+        m_name = name;
+        m_health = health;
+        m_xp = xp;
         std::cout << "Three args given constructor called.\n";
     }
 
