@@ -25,32 +25,15 @@ public:
     }
 
     /*
-    Delegating constructors
-    Reduces code duplication, by using a delegation to a 
-    multiple args constructor
+    Reduce the number of constructors with one constructor 
+    with default parameters
+    
+    Prototype here, see Player.hpp for design
+    Use only when it makes sense too.
+    Sometimes you want the user to explicitly define them all.
     */
-   
-    // Default constructor Player() delegates work to the three args constructor
-    Player()
-        :Player{"None", 0, 0} // Three arg constructor called here
-    {
-        std::cout << "No args given constructor called.\n";
-    }
-
-    // One arg constructor delegates work to the three args constructor
-    Player(std::string name)
-        :Player{name, 0, 0} // Three arg constructor called here
-    {
-        std::cout << "One arg given constructor called.\n";
-    }
-
-    // Three arg constructor, this does all the work
-    Player(std::string name, int health, int xp)
-        : m_name{name}, m_health{health}, m_xp {xp}
-    {
-        std::cout << "Three args given constructor called.\n";
-    }
-
+    Player(std::string name = "None", int health = 0, int xp = 0);
+    
     // destructor
     ~Player()
     {
