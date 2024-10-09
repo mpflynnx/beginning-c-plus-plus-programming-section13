@@ -7,14 +7,11 @@ int main ()
 {
 
     // Created on stack
-    // Player empty; // None, 0, 0
 
+    // Our single constructor can now handle all these
     Player empty{}; // None, 0, 0
-
     Player hero {"Hero"}; // Hero, 0, 0
-
-    Player villain {"Villain"}; // Villain, 0 , 0
-
+    Player villain {"Villain", 50}; // Villain, 50 , 0
     Player Frank {"Frank", 100, 4}; // Frank, 100, 4
 
     // Created dynamically in the Heap
