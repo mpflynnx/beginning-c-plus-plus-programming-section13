@@ -17,17 +17,19 @@ public:
         m_name = name;
     }
 
-    std::string get_name()
+    std::string get_name() const // const tells compiler method doesn't change object
     {
+        // cannot change a member if const keyword used above.
         return m_name;
     }
+    // All getters should be const as shown with get_name() const
 
-    int get_health()
+    int get_health() const
     {
         return m_health;
     }
 
-    int get_xp()
+    int get_xp() const
     {
         return m_xp;
     }

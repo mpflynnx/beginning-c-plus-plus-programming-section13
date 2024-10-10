@@ -1,23 +1,27 @@
 #include <iostream>
 #include <string>
-#include <vector>
-#include "include/Move.hpp"
+#include "include/Player.hpp"
+
+void display_player_name(const Player &p)
+{
+  std::cout << p.get_name() << std::endl; // not allowed in object Player const
+}
 
 int main ()
 {
 
-    std::vector<Move> vec;
+  const Player villain {"Villain", 100, 55};
 
-    vec.push_back(Move{10}); // Temp R-value object
-    vec.push_back(Move{20});
-    vec.push_back(Move{30});
-    vec.push_back(Move{40});
-    vec.push_back(Move{50});
-    vec.push_back(Move{60});
-    vec.push_back(Move{70});
-    vec.push_back(Move{80});
+  Player hero {"Hero", 100, 15}; // not const Player object hero
 
-    return 0;
+  // villain.set_name("new name"); // not allowed ever
+  std::cout << villain.get_name() << std::endl; // not allowed if object const and get_name method not const
+  std::cout << hero.get_name() << std::endl; // Allowed if object not const
+
+  display_player_name(villain);
+  display_player_name(hero);
+
+  return 0;
     
 } // Destructors called in reverse order to constructors
   // Destructors will try to delete
