@@ -1,21 +1,21 @@
 #include <iostream>
 #include <string>
-#include "include/Deep.hpp"
-
-void display_deep(Deep d)
-{
-    // d is a copy of obj1 via copy constructor
-    std::cout << d.get_data_value() << std::endl;
-} // d goes out of scope here, destructor called
+#include <vector>
+#include "include/Move.hpp"
 
 int main ()
 {
 
-    Deep obj1 {100};
-    display_deep(obj1);
+    std::vector<Move> vec;
 
-    Deep obj2 {obj1}; 
-    obj2.set_data_value(1000);
+    vec.push_back(Move{10}); // Temp R-value object
+    vec.push_back(Move{20});
+    vec.push_back(Move{30});
+    vec.push_back(Move{40});
+    vec.push_back(Move{50});
+    vec.push_back(Move{60});
+    vec.push_back(Move{70});
+    vec.push_back(Move{80});
 
     return 0;
     
