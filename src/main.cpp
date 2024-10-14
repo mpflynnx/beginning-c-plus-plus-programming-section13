@@ -7,19 +7,32 @@ void display_player_name(const Player &p)
   std::cout << p.get_name() << std::endl; // not allowed in object Player const
 }
 
+void display_active_players()
+{
+  std::cout << "Active players: " << Player::get_num_of_players()  << std::endl;
+}
+
 int main ()
 {
 
-  const Player villain {"Villain", 100, 55};
+  display_active_players(); // breakpoint here
 
-  Player hero {"Hero", 100, 15}; // not const Player object hero
+  //debugger: add WATCH for Player::num_of_players
 
-  // villain.set_name("new name"); // not allowed ever
-  std::cout << villain.get_name() << std::endl; // not allowed if object const and get_name method not const
-  std::cout << hero.get_name() << std::endl; // Allowed if object not const
+  Player hero("Hero"); // Test constructor increment for num_of_players
 
-  display_player_name(villain);
-  display_player_name(hero);
+  {
+    Player bob("Bob");
+    display_active_players();
+  } // destructure called test for decrement
+
+  display_active_players();
+
+  // Dynamically created on heap
+  Player *enemy = new Player("Enemy", 99, 99);
+  display_active_players();
+  delete enemy;
+  display_active_players();
 
   return 0;
     

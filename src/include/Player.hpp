@@ -7,6 +7,11 @@ class Player
 {
 
 private:
+
+    // static members belong to class only not objects
+    static int num_of_players; // cannot initialise here, compiler error
+    
+    
     std::string m_name;
     int m_health;
     int m_xp;
@@ -46,10 +51,13 @@ public:
     // Player(const Player& player) = default;
 
     // destructor
-    ~Player()
-    {
-        std::cout << "Destructor called for " << m_name << std::endl;
-    }
+    ~Player();
+
+    /*
+    class functions or static functions only have access to static 
+    members, it does not have access to any object variables
+    */
+    static int get_num_of_players();
     
 };   
 
